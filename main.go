@@ -84,6 +84,8 @@ func quoteHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	fmt.Println("Quote:", quote)
+
 	jsonResponse, err := json.Marshal(map[string]string{"quote": quote})
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -101,6 +103,6 @@ func main() {
 	}
 
 	http.HandleFunc("/quote", quoteHandler)
-	fmt.Println("Server is running on port 8080")
+	fmt.Println("Open this URL in your browser: http://localhost:8080/quote")
 	http.ListenAndServe(":8080", nil)
 }
